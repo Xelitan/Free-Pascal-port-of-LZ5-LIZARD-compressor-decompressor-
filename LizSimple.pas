@@ -26,8 +26,8 @@ uses SysUtils, lz5, xxHash, Classes;
 function LZ5CompressStreams (Infile, Outfile: TStream): Integer;
 function LZ5DecompressStreams(Infile, Outfile: TStream): Integer;
 
-function LZ5CompressFile(Infilename, Outfilename: String): Integer;
-function LZ5DecompressFile(Infilename, Outfilename: String): Integer;
+function LZ5CompressFile(const Infilename, Outfilename: String): Integer;
+function LZ5DecompressFile(const Infilename, Outfilename: String): Integer;
 
 function LZ5(Uncompressed: AnsiString): AnsiString;
 function UnLZ5(Compressed: AnsiString): AnsiString;
@@ -36,8 +36,8 @@ function UnLZ5(Compressed: AnsiString): AnsiString;
 function LIZCompressStreams (Infile, Outfile: TStream): Integer;
 function LIZDecompressStreams(Infile, Outfile: TStream): Integer;
 
-function LIZCompressFile(Infilename, Outfilename: String): Integer;
-function LIZDecompressFile(Infilename, Outfilename: String): Integer;
+function LIZCompressFile(const Infilename, Outfilename: String): Integer;
+function LIZDecompressFileconst (Infilename, Outfilename: String): Integer;
 
 function LIZ(Uncompressed: AnsiString): AnsiString;
 function UnLIZ(Compressed: AnsiString): AnsiString;
@@ -322,7 +322,7 @@ end;
 // HElper functions - LIZ
 // =================================================================== 
 
-function LIZCompressFile(Infilename, Outfilename: String): Integer;
+function LIZCompressFile(const Infilename, Outfilename: String): Integer;
 var
   InFile: TFileStream;
   OutFile: TFileStream;
@@ -356,7 +356,7 @@ begin
   end;
 end;
 
-function LIZDecompressFile(Infilename, Outfilename: String): Integer;
+function LIZDecompressFile(const Infilename, Outfilename: String): Integer;
 var
   InFile: TFileStream;
   OutFile: TFileStream;
@@ -455,7 +455,7 @@ end;
 // HElper functions - LZ5
 // =================================================================== 
 
-function LZ5CompressFile(Infilename, Outfilename: String): Integer;
+function LZ5CompressFile(const Infilename, Outfilename: String): Integer;
 var
   InFile: TFileStream;
   OutFile: TFileStream;
@@ -489,7 +489,7 @@ begin
   end;
 end;
 
-function LZ5DecompressFile(Infilename, Outfilename: String): Integer;
+function LZ5DecompressFile(const Infilename, Outfilename: String): Integer;
 var
   InFile: TFileStream;
   OutFile: TFileStream;
