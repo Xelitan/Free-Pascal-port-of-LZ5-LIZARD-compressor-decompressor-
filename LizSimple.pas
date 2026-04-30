@@ -37,7 +37,7 @@ function LIZCompressStreams (Infile, Outfile: TStream): Integer;
 function LIZDecompressStreams(Infile, Outfile: TStream): Integer;
 
 function LIZCompressFile(const Infilename, Outfilename: String): Integer;
-function LIZDecompressFileconst (Infilename, Outfilename: String): Integer;
+function LIZDecompressFile(const Infilename, Outfilename: String): Integer;
 
 function LIZ(Uncompressed: AnsiString): AnsiString;
 function UnLIZ(Compressed: AnsiString): AnsiString;
