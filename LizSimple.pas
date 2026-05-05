@@ -29,8 +29,8 @@ function LZ5DecompressStreams(Infile, Outfile: TStream): Integer;
 function LZ5CompressFile(const Infilename, Outfilename: String): Integer;
 function LZ5DecompressFile(const Infilename, Outfilename: String): Integer;
 
-function LZ5(Uncompressed: AnsiString): AnsiString;
-function UnLZ5(Compressed: AnsiString): AnsiString;
+function LZ5(const Uncompressed: AnsiString): AnsiString;
+function UnLZ5(const Compressed: AnsiString): AnsiString;
 
 
 function LIZCompressStreams (Infile, Outfile: TStream): Integer;
@@ -39,8 +39,8 @@ function LIZDecompressStreams(Infile, Outfile: TStream): Integer;
 function LIZCompressFile(const Infilename, Outfilename: String): Integer;
 function LIZDecompressFile(const Infilename, Outfilename: String): Integer;
 
-function LIZ(Uncompressed: AnsiString): AnsiString;
-function UnLIZ(Compressed: AnsiString): AnsiString;
+function LIZ(const Uncompressed: AnsiString): AnsiString;
+function UnLIZ(const Compressed: AnsiString): AnsiString;
 
 implementation
 
@@ -390,7 +390,7 @@ begin
   end;
 end;
 
-function LIZ(Uncompressed: AnsiString): AnsiString;
+function LIZ(const Uncompressed: AnsiString): AnsiString;
 var
   InStream, OutStream: TMemoryStream;
 begin
@@ -404,7 +404,7 @@ begin
     InStream.Position := 0;
 
     // pack
-    if LIZCompressStreams(InStream, OutStream) <> 0 then
+    if LIZCompressStreams(InStream, OutStream) < 0 then
       Exit;
 
     // stream to string
@@ -420,7 +420,7 @@ begin
   end;
 end;
 
-function UnLIZ(Compressed: AnsiString): AnsiString;
+function UnLIZ(const Compressed: AnsiString): AnsiString;
 var
   InStream, OutStream: TMemoryStream;
 begin
@@ -434,7 +434,7 @@ begin
     InStream.Position := 0;
 
     // unpack
-    if LIZDecompressStreams(InStream, OutStream) <> 0 then
+    if LIZDecompressStreams(InStream, OutStream) < 0 then
       Exit;
 
     // stream to string
@@ -523,7 +523,7 @@ begin
   end;
 end;
 
-function LZ5(Uncompressed: AnsiString): AnsiString;
+function LZ5(const Uncompressed: AnsiString): AnsiString;
 var
   InStream, OutStream: TMemoryStream;
 begin
@@ -537,7 +537,7 @@ begin
     InStream.Position := 0;
 
     // pack
-    if LZ5CompressStreams(InStream, OutStream) <> 0 then
+    if LZ5CompressStreams(InStream, OutStream) < 0 then
       Exit;
 
     // stream to string
@@ -553,7 +553,7 @@ begin
   end;
 end;
 
-function UnLZ5(Compressed: AnsiString): AnsiString;
+function UnLZ5(const Compressed: AnsiString): AnsiString;
 var
   InStream, OutStream: TMemoryStream;
 begin
@@ -567,7 +567,7 @@ begin
     InStream.Position := 0;
 
     // unpack
-    if LZ5DecompressStreams(InStream, OutStream) <> 0 then
+    if LZ5DecompressStreams(InStream, OutStream) < 0 then
       Exit;
 
     // stream to string
